@@ -16,9 +16,9 @@ import java.util.Optional;
 @Mapper(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
 public interface OrderMapper {
 
-    @Mapping(target = "fileNames", expression = "java(mapFileNames(order.getFiles()))")
     Order toOrder(CreateOrderRequest createOrderRequest);
 
+    @Mapping(target = "fileNames", expression = "java(mapFileNames(order.getFiles()))")
     OrderResponse toOrderResponse(Order order);
 
     void updateOrder(@MappingTarget Order order, UpdateOrderRequest updateOrderRequest);
