@@ -3,9 +3,9 @@ spring:
     name: order-service
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/order_service_db
-    username: ${ORDER_USERNAME}
-    password: ${ORDER_PASSWORD}
+    url: ${POSTGRES_ORDERS_DB_URL}
+    username: ${POSTGRES_ORDERS_DB_USER}
+    password: ${POSTGRES_ORDERS_DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
 
   jpa:
@@ -19,3 +19,6 @@ spring:
 
 server:
   port: 8080
+
+orders:
+  directory: ${ORDERS_DIR:/app/orders_data}
