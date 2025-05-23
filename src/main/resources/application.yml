@@ -3,14 +3,14 @@ spring:
     name: order-service
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/diploma_orders
+    url: jdbc:postgresql://localhost:5432/order_service_db
     username: ${ORDER_USERNAME}
     password: ${ORDER_PASSWORD}
     driver-class-name: org.postgresql.Driver
 
   jpa:
     hibernate:
-      ddl-auto: update  # Use `create`, `validate`, `update`, or `none` depending on your needs
+      ddl-auto: update
     show-sql: true
     properties:
       hibernate:

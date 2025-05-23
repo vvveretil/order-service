@@ -2,16 +2,29 @@ version: '3.8'
 
 services:
   postgres:
+    container_name: order_service_db
     image: postgres:15
     restart: always
     ports:
       - "5432:5432"
     environment:
-      POSTGRES_DB: diploma_orders
+      POSTGRES_DB: order_service_db
       POSTGRES_USER: ${ORDER_USERNAME}
       POSTGRES_PASSWORD: ${ORDER_PASSWORD}
     volumes:
       - pgdata:/var/lib/postgresql/data
+
+  app:
+    build: .
+    container_name: order_service_app
+    depends_on:
+      - postgres
+    environment:
+      ORDER_USERNAME: ${ORDER_USERNAME}
+      ORDER_PASSWORD: ${ORDER_PASSWORD}
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/order_service_db
+    ports:
+      - "8080:8080"
 
 volumes:
   pgdata:
